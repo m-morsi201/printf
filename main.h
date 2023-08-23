@@ -13,10 +13,5 @@ int handel(const char *, va_list);
 int per_handel(const char *, va_list, int *);
 int print(char *);
 
-typedef struct _format
-{
-	char type;
-	int (*f)(va_list);
-} format;
 
 #endif

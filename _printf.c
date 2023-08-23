@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 		return (0);
 
 	va_start(args, format);
-	s = _handel(format, args);
+	s = handel(format, args);
 
 	putchar(-1);
 	va_end(args);
