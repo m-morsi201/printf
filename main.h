@@ -9,9 +9,9 @@
 
 int _printf(const char *format, ...);
 int _strlen(const char *);
-int handel(const char *, va_list);
+int _handel(const char *, va_list);
 int per_handel(const char *, va_list, int *);
 int print(char *);
-
+int _printf(const char *, ...);
 
 #endif
