@@ -1,5 +1,5 @@
 #include "main.h"
-#include "stdio.h"
+#include <stdio.h>
 
 /**
  * _printf - this is a function Produces output according to a format.
@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 		return (0);
 
 	va_start(args, format);
-	s = handel(format, args);
+	s = _handel(format, args);
 
 	putchar(-1);
 	va_end(args);
