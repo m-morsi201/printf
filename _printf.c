@@ -2,10 +2,11 @@
 #include "stdio.h"
 
 /**
- * _printf - this is a function Produces output according to a format
+ * _printf - this is a function Produces output according to a format.
  * @format: Is a string.
- * Return: The number of characters printed
- **/
+ * Return: The number of characters printed.
+**/
+
 int _printf(const char *format, ...)
 {
 	int s;
@@ -19,7 +20,7 @@ int _printf(const char *format, ...)
 		return (0);
 
 	va_start(args, format);
-	s = handler(format, args);
+	s = _handel(format, args);
 
 	putchar(-1);
 	va_end(args);
