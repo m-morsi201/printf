@@ -8,23 +8,23 @@
  * Return: arguments and string.
 */
 
-int _handel(const char *str, va_list list)
+int _handel(const char *format, va_list list)
 {
 	int s, n, x;
 
 	s = 0;
-	for (n = 0; str[n] != 0; n++)
+	for (n = 0; format[n] != 0; n++)
 	{
-		if (str[n] == '%')
+		if (format[n] == '%')
 		{
-			x = per_handel(str, list, &n);
+			x = per_handel(format, list, &n);
 			if (x == -1)
 				return (-1);
 
 			s += x;
 			continue;
 		}
-		putchar(str[n]);
+		putchar(format[n]);
 		s = s + 1;
 	}
 	return (s);
@@ -38,7 +38,7 @@ int _handel(const char *str, va_list list)
  * Return: string.
 */
 
-int per_handel(const char *str, va_list list, int *n)
+int per_handel(const char *format, va_list list, int *n)
 {
 	int s, b, num_format;
 	format formats[] = {
@@ -52,10 +52,10 @@ int per_handel(const char *str, va_list list, int *n)
 
 	*n = *n + 1;
 
-	if (str[*n] == '\0')
+	if (format[*n] == '\0')
 		return (-1);
 
-	if (str[*n] == '%')
+	if (format[*n] == '%')
 	{
 		putchar('%');
 		return (1);
@@ -64,7 +64,7 @@ int per_handel(const char *str, va_list list, int *n)
 	num_format = sizeof(formats) / sizeof(formats[0]);
 	for (s = b = 0; b < num_format; b++)
 	{
-		if (str[*n] == formats[b].type)
+		if (format[*n] == formats[b].type)
 		{
 			s = formats[b].f(list);
 			return (s);
@@ -72,7 +72,7 @@ int per_handel(const char *str, va_list list, int *n)
 
 	}
 
-	putchar('%'), putchar(str[*n]);
+	putchar('%'), putchar(foramt[*n]);
 
 	return (2);
 }
