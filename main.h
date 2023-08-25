@@ -7,11 +7,16 @@
 #include <limits.h>
 #include <unistd.h>
 
-int _printf(const char *format, ...);
 int _strlen(const char *);
-int _handel(const char *, va_list);
-int per_handel(const char *, va_list, int *);
-int print(char *);
 int _printf(const char *, ...);
+int _printf(const char *format, ...);
+int handler(const char *, va_list);
+int percent_handler(const char *, va_list, int *);
+
+typedef struct _format
+{
+	char type;
+	int (*f)(va_list);
+} format;
 
 #endif
