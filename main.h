@@ -7,12 +7,12 @@
 #include <limits.h>
 #include <unistd.h>
 
-int _strlen(const char *str);
+int _strlen(const char *format);
 int _printf(const char *, ...);
 int _printf(const char *format, ...);
-int _handel(const char *str, va_list);
-int per_handel(const char *str, va_list, int *n);
-int print(char *str);
+int _handel(const char *format, va_list);
+int per_handel(const char *format, va_list, int *n);
+int print(char *format);
 
 /**
  * struct _format - it is a data type struct.
