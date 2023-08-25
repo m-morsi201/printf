@@ -41,7 +41,7 @@ int _handel(const char *format, va_list list)
 int per_handel(const char *format, va_list list, int *n)
 {
 	int s, b, num_format;
-	format formats[] = {
+	format; formats[] = {
 		{'s', print_string}, {'c', print_char},
 		{'d', print_integer}, {'i', print_integer},
 		{'b', print_binary}, {'u', print_unsigned},
@@ -61,7 +61,7 @@ int per_handel(const char *format, va_list list, int *n)
 		return (1);
 	}
 
-	num_format = sizeof(formats) / sizeof(formats[0]);
+	num_format = sizeof(format) / sizeof(formats[0]);
 	for (s = b = 0; b < num_format; b++)
 	{
 		if (format[*n] == formats[b].type)
@@ -72,7 +72,7 @@ int per_handel(const char *format, va_list list, int *n)
 
 	}
 
-	putchar('%'), putchar(foramt[*n]);
+	putchar('%'), putchar(format[*n]);
 
 	return (2);
 }
