@@ -10,7 +10,7 @@
 int _strlen(const char *);
 int _printf(const char *, ...);
 int _printf(const char *format, ...);
-int handler(const char *, va_list);
+int handel(const char *, va_list);
 int per_handel(const char *, va_list, int *);
 
 typedef struct _format
