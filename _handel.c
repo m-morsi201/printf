@@ -32,8 +32,8 @@ int _handel(char con_form, va_list argus)
 
 	if (t_fun == 0)
 	{
-		t_fun += putchar('%');
-		t_fun += putchar(con_form);
+		t_fun += _putchar('%');
+		t_fun += _putchar(con_form);
 	}
 
 	return (t_fun);
