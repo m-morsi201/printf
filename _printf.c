@@ -8,21 +8,42 @@
 
 int _printf(const char *format, ...)
 {
-	int s;
-	va_list args;
+	int n, t, t_fun;
+	va_list argus;
 
-	if (format == NULL)
+	n = 0;
+	t = 0;
+
+	va_start(argus, format);
+	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
-
-	s = _strlen(format);
-	if (s <= 0)
-		return (0);
-
-	va_start(args, format);
-	s = _handel(format, args);
-
-	putchar(-1);
-	va_end(args);
-
-	return (s);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+	while (format[n])
+	{
+		t_fun = 0;
+		if (format[n] == '%')
+		{
+			if (!format[n + 1] || (format[n + 1] == ' ' && !format[n + 2]))
+			{
+				t = -1;
+				break;
+			}
+			t_fun += _handel(format[n + 1], argus);
+			if (t_fun == 0)
+				t += _putchar(format[n + 1]);
+			if (t_fun == -1)
+				t = -1;
+			n++;
+		}
+		else
+		{
+			(t == -1) ? (_putchar(format[n])) : (t += _putchar(format[n]));
+		}
+		n++;
+		if (t != -1)
+			t += t_fun;
+	}
+	va_end(argus);
+	return (t);
 }

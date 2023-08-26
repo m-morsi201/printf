@@ -2,77 +2,39 @@
 #include <stdio.h>
 
 /**
- * _handel - handel function.
- * @str: this is String.
- * @list: this is List of arguments.
+ * _handel -it is to handel function.
+ * @con_form: this is String.
+ * @argus: this is List of arguments.
  * Return: arguments and string.
 */
 
-int _handel(const char *format, va_list list)
+int _handel(char con_form, va_list argus)
 {
-	int s, n, x;
+	int n = 0;
+	int t_fun = 0;
 
-	s = 0;
-	for (n = 0; format[n] != 0; n++)
-	{
-		if (format[n] == '%')
-		{
-			x = per_handel(format, list, &n);
-			if (x == -1)
-				return (-1);
-
-			s += x;
-			continue;
-		}
-		putchar(format[n]);
-		s = s + 1;
-	}
-	return (s);
-}
-
-/**
- * per_handel - it handel percent format.
- * @str: sting.
- * @list: it is list.
- * @n : for return.
- * Return: string.
-*/
-
-int per_handel(const char *format, va_list list, int *n)
-{
-	int s, b, num_format;
-	format; formats[] = {
-		{'s', print_string}, {'c', print_char},
-		{'d', print_integer}, {'i', print_integer},
-		{'b', print_binary}, {'u', print_unsigned},
-		{'o', print_octal}, {'x', print_hexadecimal_low},
-		{'X', print_hexadecimal_upp}, {'p', print_pointer},
-		{'r', print_rev_string}, {'R', print_rot}
+	format_t form[] = {
+		{'c', print_ch},
+		{'s', print_str},
+		{'%', print_mod},
+		{'d', print_digt},
+		{'i', print_digt},
+		{'r', print_rev_str},
+		{0, NULL}
 	};
 
-	*n = *n + 1;
-
-	if (format[*n] == '\0')
-		return (-1);
-
-	if (format[*n] == '%')
+	while (form[n].format)
 	{
-		putchar('%');
-		return (1);
+		if (con_form == form[n].format)
+			t_fun += form[n].f(argus);
+		n++;
 	}
 
-	num_format = sizeof(format) / sizeof(formats[0]);
-	for (s = b = 0; b < num_format; b++)
+	if (t_fun == 0)
 	{
-		if (format[*n] == formats[b].type)
-		{
-			s = formats[b].f(list);
-			return (s);
-		}
-
+		t_fun += putchar('%');
+		t_fun += putchar(con_form);
 	}
 
-	putchar('%'), putchar(format[*n]);
-
-	return (2);
+	return (t_fun);
 }
